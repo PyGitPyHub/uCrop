@@ -100,6 +100,9 @@ public class UCropActivity extends AppCompatActivity {
 
     private boolean mShowBottomControls;
     private boolean mShowLoader = true;
+    
+    //Mariano.py Disable free rotation
+    private boolean mAllowFreeRotation = true;
 
     private UCropView mUCropView;
     private GestureCropImageView mGestureCropImageView;
@@ -306,6 +309,9 @@ public class UCropActivity extends AppCompatActivity {
         mShowBottomControls = !intent.getBooleanExtra(UCrop.Options.EXTRA_HIDE_BOTTOM_CONTROLS, false);
         mRootViewBackgroundColor = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_ROOT_VIEW_BACKGROUND_COLOR, ContextCompat.getColor(this, R.color.ucrop_color_crop_background));
 
+        //Mariano.py
+        mAllowFreeRotation = !intent.getBooleanExtra(UCrop.Options.EXTRA_ALLOW_FREE_ROTATION, true);
+        
         setupAppBar();
         initiateRootViews();
 
@@ -331,7 +337,7 @@ public class UCropActivity extends AppCompatActivity {
             mLayoutScale = findViewById(R.id.layout_scale_wheel);
 
             setupAspectRatioWidget(intent);
-            setupRotateWidget();
+            setupRotateWidget(mAllowFreeRotation);
             setupScaleWidget();
             setupStatesWrapper();
         }
@@ -492,7 +498,7 @@ public class UCropActivity extends AppCompatActivity {
         }
     }
 
-    private void setupRotateWidget() {
+    private void setupRotateWidget(boolean mAllowFreeRotation) {
         mTextViewRotateAngle = findViewById(R.id.text_view_rotate);
         ((HorizontalProgressWheelView) findViewById(R.id.rotate_scroll_wheel))
                 .setScrollingListener(new HorizontalProgressWheelView.ScrollingListener() {
@@ -513,6 +519,10 @@ public class UCropActivity extends AppCompatActivity {
                 });
 
         ((HorizontalProgressWheelView) findViewById(R.id.rotate_scroll_wheel)).setMiddleLineColor(mActiveControlsWidgetColor);
+        
+        //Mariano.py
+        if(!mAllowFreeRotation)
+            ((HorizontalProgressWheelView) findViewById(R.id.rotate_scroll_wheel)).setVisibility(View.INVISIBLE);
 
 
         findViewById(R.id.wrapper_reset_rotate).setOnClickListener(new View.OnClickListener() {
