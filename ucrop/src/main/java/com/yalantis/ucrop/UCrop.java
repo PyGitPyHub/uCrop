@@ -310,11 +310,15 @@ public class UCrop {
 
         public static final String EXTRA_HIDE_BOTTOM_CONTROLS = EXTRA_PREFIX + ".HideBottomControls";
         public static final String EXTRA_FREE_STYLE_CROP = EXTRA_PREFIX + ".FreeStyleCrop";
+        
+        //Mariano.py
+        public static final String EXTRA_ALLOW_FREE_ROTATION = ".AllowFreeRotation";
 
         public static final String EXTRA_ASPECT_RATIO_SELECTED_BY_DEFAULT = EXTRA_PREFIX + ".AspectRatioSelectedByDefault";
         public static final String EXTRA_ASPECT_RATIO_OPTIONS = EXTRA_PREFIX + ".AspectRatioOptions";
 
         public static final String EXTRA_UCROP_ROOT_VIEW_BACKGROUND_COLOR = EXTRA_PREFIX + ".UcropRootViewBackgroundColor";
+        
 
 
         private final Bundle mOptionBundle;
@@ -516,6 +520,14 @@ public class UCrop {
          */
         public void setHideBottomControls(boolean hide) {
             mOptionBundle.putBoolean(EXTRA_HIDE_BOTTOM_CONTROLS, hide);
+        }
+        
+        //Mariano.py
+        /**
+         * @param allow - set to false to hide the rotation wheel(shown by default)
+         */
+        public void setAllowFreeRotation(boolean allow){
+            mOptionBundle.putBoolean(EXTRA_ALLOW_FREE_ROTATION, allow);
         }
 
         /**
