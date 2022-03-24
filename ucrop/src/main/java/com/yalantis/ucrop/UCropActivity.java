@@ -310,7 +310,7 @@ public class UCropActivity extends AppCompatActivity {
         mRootViewBackgroundColor = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_ROOT_VIEW_BACKGROUND_COLOR, ContextCompat.getColor(this, R.color.ucrop_color_crop_background));
 
         //Mariano.py
-        mAllowFreeRotation = !intent.getBooleanExtra(UCrop.Options.EXTRA_ALLOW_FREE_ROTATION, true);
+        mAllowFreeRotation = intent.getBooleanExtra(UCrop.Options.EXTRA_ALLOW_FREE_ROTATION, true);
         
         setupAppBar();
         initiateRootViews();
